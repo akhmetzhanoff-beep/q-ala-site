@@ -1,0 +1,19 @@
+:root{--ink:#101a2b;--muted:#5b6573;--line:#e5eaf0;--brand:#0b3d24;--bg:#f7f9fb;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#eef2f6;--muted:#a3adba;--line:#2a3445;--bg:#0d1420;--card:#141d2c;--brand:#25d366}}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+a{color:var(--brand)}header,main,footer{max-width:860px;margin:0 auto;padding:0 16px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:20px;padding-bottom:20px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:var(--ink)}.logo span{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--brand);color:#fff}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}nav a{text-decoration:none}
+.hero{padding:40px 0 24px}.hero h1{font-size:clamp(28px,6vw,44px);line-height:1.15;margin:0 0 12px}.hero p{font-size:18px;color:var(--muted);max-width:620px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:24px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}.card h3{margin:0 0 6px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:14px}
+.doc h1{font-size:28px;margin:24px 0 4px}.doc h2{font-size:19px;margin:28px 0 8px}.doc .meta{color:var(--muted);font-size:14px}
+.notice{background:#fff7e6;color:#7a4b00;border:1px solid #f3d9a4;border-radius:10px;padding:10px 14px;font-size:14px}
+@media (prefers-color-scheme:dark){.notice{background:#2b2210;color:#f3d9a4;border-color:#5a4520}}
+table{border-collapse:collapse;width:100%;font-size:14px}td,th{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+footer{border-top:1px solid var(--line);margin-top:48px;padding-top:18px;padding-bottom:32px;color:var(--muted);font-size:13px}
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 8px }
+.btn { display: inline-block; padding: 14px 22px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 600 }
+.btn.primary { background: #0b3d24; color: #fbfbf8; border-color: #0b3d24 }
+.note { font-size: 14px; color: var(--muted) }
