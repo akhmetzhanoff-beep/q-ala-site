@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Qala Studio — приложения и сайты для бизнеса</title>
+<meta name="description" content="Разработка приложений и сайтов для бизнеса в Казахстане на готовой платформе Qala: меню, заказы, бонусы, QR, CRM. Быстрее и дешевле разработки с нуля.">
+<meta name="theme-color" content="#0b3d24"><link rel="icon" type="image/png" href="/app/icon-192.png"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png"><link rel="stylesheet" href="/style.css">
+<style>
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.plan.hit{border:2px solid #25d366}.plan h3{margin:0;font-size:18px}.plan .price{font-size:24px;font-weight:800;margin:0}.plan .price small{font-size:14px;font-weight:600;color:var(--muted)}
+.plan ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}.plan .tag{align-self:flex-start;background:#dcf8e6;color:#0b3d24;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700}
+.plan .btn{margin-top:auto;text-align:center}
+.wa{background:#25d366!important;border-color:#25d366!important;color:#06140d!important}
+.steps{counter-reset:s;display:grid;gap:10px;padding:0;list-style:none}.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start}
+.steps li::before{content:counter(s);flex:0 0 30px;height:30px;border-radius:50%;background:#0b3d24;color:#fff;display:grid;place-items:center;font-weight:700}
+h2{font-size:22px;margin:36px 0 8px}details{border-bottom:1px solid var(--line);padding:12px 0}summary{cursor:pointer;font-weight:600}details p{color:var(--muted);margin:8px 0 0}
+.float-wa{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));box-shadow:0 8px 24px #0b3d2440}
+footer{padding-bottom:90px}
+@media (prefers-color-scheme:dark){.plan .tag{background:#123b25;color:#bff3d2}}
+</style></head><body>
+<header><a class="logo" href="/"><span>Q</span>QALA STUDIO</a><nav><a href="#prices">Цены</a><a href="#how">Как работаем</a><a href="#faq">Вопросы</a><a href="/">Qala</a></nav></header>
+<main>
+<section class="hero"><h1>Приложение и сайт для вашего бизнеса — от 300 000 ₸</h1>
+<p>Делаем на готовой платформе Qala: меню и каталог, заказы, бонусы по QR, push-уведомления, CRM и статистика уже работают. Поэтому быстрее и дешевле, чем разработка с нуля.</p>
+<div class="cta"><a class="btn primary wa" data-wa href="#">Написать в WhatsApp</a><a class="btn" href="/app/">Посмотреть пример — Qala</a></div>
+<p class="note">Кафе, рестораны, салоны красоты, клиники, магазины, сервисы. Интерфейс на казахском и русском.</p></section>
+
+<h2 id="prices">Цены</h2>
+<section class="plans">
+<div class="plan"><h3>Старт</h3><p class="price">300–500 тыс. ₸</p><ul><li>Сайт и веб-приложение заведения</li><li>Меню или каталог с ценами</li><li>Контакты, карта, WhatsApp</li><li>QR и бонусы для гостей</li><li>Срок: от 1 недели</li></ul><a class="btn" data-wa data-plan="Старт" href="#">Обсудить</a></div>
+<div class="plan hit"><span class="tag">Популярный</span><h3>Бизнес</h3><p class="price">1–2,5 млн ₸</p><ul><li>Приложение в App Store и Google Play под вашим логотипом</li><li>Онлайн-заказы и доставка</li><li>Бонусы, акции, push-рассылки</li><li>CRM: клиенты, статистика, отчёты</li><li>Срок: от 3–4 недель</li></ul><a class="btn primary wa" data-wa data-plan="Бизнес" href="#">Обсудить</a></div>
+<div class="plan"><h3>Под заказ</h3><p class="price">от 5 млн ₸</p><ul><li>Своя логика и дизайн</li><li>Интеграции: iiko, r_keeper, онлайн-кассы, 1С, банки</li><li>Личные кабинеты, роли сотрудников</li><li>Срок — по техническому заданию</li></ul><a class="btn" data-wa data-plan="Под заказ" href="#">Обсудить</a></div>
+<div class="plan"><h3>Поддержка</h3><p class="price">30–80 тыс. ₸ <small>в месяц</small></p><ul><li>Хостинг на серверах в Казахстане</li><li>Обновления и исправления</li><li>Публикация новых версий в сторах</li><li>Помощь с контентом</li></ul><a class="btn" data-wa data-plan="Поддержка" href="#">Обсудить</a></div>
+</section>
+<p class="note">Точная стоимость — после короткого разговора о задаче. Цены без НДС. Аккаунты разработчика в App Store и Google Play оформляются на вашу компанию и оплачиваются отдельно.</p>
+
+<h2 id="how">Как работаем</h2>
+<ol class="steps">
+<li><div><b>Пишете в WhatsApp</b><br><span class="note">Расскажите, чем занимаетесь и что нужно. Ответим в рабочее время.</span></div></li>
+<li><div><b>Показываем пример за 1–2 дня</b><br><span class="note">Собираем черновик с вашим логотипом и меню — видно, как будет выглядеть.</span></div></li>
+<li><div><b>Договор и предоплата</b><br><span class="note">Работаем по договору с ТОО, фиксируем сроки и цену.</span></div></li>
+<li><div><b>Запуск</b><br><span class="note">Публикуем сайт и приложение, учим сотрудников, подключаем поддержку.</span></div></li>
+</ol>
+
+<h2 id="faq">Вопросы</h2>
+<details><summary>Почему дешевле, чем у студий?</summary><p>Основа уже готова и работает в Qala: каталог, заказы, бонусы, QR, CRM, статистика. Мы настраиваем её под вас, а не пишем всё заново.</p></details>
+<details><summary>Где хранятся данные клиентов?</summary><p>На серверах в Казахстане, как требует Закон РК «О персональных данных и их защите».</p></details>
+<details><summary>Приложение будет моим?</summary><p>Да: ваш логотип, ваше название в App Store и Google Play, аккаунты разработчика оформляются на вашу компанию.</p></details>
+<details><summary>Можно на казахском?</summary><p>Да, казахский и русский входят во все пакеты. Английский и другие языки — по запросу.</p></details>
+</main>
+<a class="btn primary wa float-wa" data-wa href="#" aria-label="Написать в WhatsApp">WhatsApp</a>
+<footer>© 2026 ТОО «OTES COMPANY», БИН 211040003575 · Казахстан, г. Астана, пр. Мангилик Ел, 20 · <a href="/privacy.html">Конфиденциальность</a></footer>
+<script>
+// WhatsApp number for leads: digits only, e.g. 77001234567
+var WA_NUMBER = '77055448858';
+document.querySelectorAll('[data-wa]').forEach(function (a) {
+  var text = 'Здравствуйте! Интересует разработка приложения' + (a.dataset.plan ? ', пакет «' + a.dataset.plan + '»' : '') + '.';
+  if (WA_NUMBER) { a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text); a.target = '_blank'; a.rel = 'noopener' }
+  else a.style.display = 'none';
+});
+</script>
+</body></html>
