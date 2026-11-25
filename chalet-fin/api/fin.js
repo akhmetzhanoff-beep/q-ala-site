@@ -21,7 +21,6 @@ module.exports = async (req, res) => {
     let body = req.body;
     if (typeof body === 'string') { try { body = JSON.parse(body) } catch(e){ body = {} } }
     body = body || {};
-    if (req.method==='GET' && req.query && req.query.selftest==='1'){ const k='chalet/selftest-'+Date.now()+'.json'; await put(k, JSON.stringify({ok:1}), {access:'public',addRandomSuffix:false,cacheControlMaxAge:60}); const {blobs}=await list({prefix:'chalet/selftest-'}); return res.status(200).json({selftest:'ok', n:blobs.length}); }
     const role = ROLES[String(body.pin||'')];
     if(!role) return res.status(403).json({ error:'Неверный код' });
     const a = body.a || 'load';
