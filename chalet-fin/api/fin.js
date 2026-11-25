@@ -1,6 +1,6 @@
 // Chalet Home — Финансы: API на Vercel. Данные в Vercel Blob (один JSON).
 const { put, list } = require('@vercel/blob');
-const ROLES = { '2817':'manager','4731':'accountant','5926':'rop','6184':'director','7350':'owner','9042':'admin' };
+const ROLES = { '2817':'manager','4731':'accountant','5926':'rop','7350':'owner','9042':'admin' };
 const CAN = { sale:['manager','accountant','rop','director','admin'], expense:['accountant','director','admin'], week:['rop','director','admin'], settings:['admin','owner'] };
 const KEY = 'chalet/9518b7f277dbb91826e66c4ea0a6da85/fin.json';
 async function load(){
