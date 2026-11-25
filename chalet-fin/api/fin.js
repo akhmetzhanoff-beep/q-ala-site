@@ -13,7 +13,7 @@ async function load(){
   if(!db.weeks || Array.isArray(db.weeks)) db.weeks = {};
   return db;
 }
-async function save(db){ await put(KEY, JSON.stringify(db), { access:'public', contentType:'application/json', addRandomSuffix:false, allowOverwrite:true, cacheControlMaxAge:0 }); }
+async function save(db){ await put(KEY, JSON.stringify(db), { access:'public', contentType:'application/json', addRandomSuffix:false, allowOverwrite:true, cacheControlMaxAge:60 }); }
 const rid = () => Math.random().toString(16).slice(2,14);
 module.exports = async (req, res) => {
   res.setHeader('Cache-Control','no-store');
