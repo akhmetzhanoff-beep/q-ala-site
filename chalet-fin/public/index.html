@@ -22,17 +22,26 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:7px 6px;b
 .note{color:var(--mut);font-size:13px}.err{color:var(--neg);font-weight:600}.hide{display:none}
 .alert{background:var(--neg);color:#fff;border-radius:12px;padding:12px 14px;font-weight:700;margin-bottom:12px}
 .pin{max-width:340px;margin:40px auto;text-align:center}.pin input{text-align:center;font-size:28px;letter-spacing:.3em}
-</style></head><body><div class="wrap">
+.wrap{max-width:none;padding:0}
+.shell{display:flex;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;width:86px;flex:0 0 86px;background:#ece8e1;padding:10px 6px;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.side button{border:0;background:none;border-radius:12px;padding:9px 2px;font-size:11.5px;font-weight:600;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:3px;line-height:1.15}
+.side button .i{font-size:20px}
+.side button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.main{flex:1;min-width:0;padding:16px 12px 60px;max-width:760px}
+.tabs{display:none}
+</style></head><body><div class="wrap"><div class="shell"><nav class="side" id="side" style="display:none"></nav><div class="main">
 <div class="brand">CHALET HOME</div><h1>Финансы</h1><div class="sub" id="who"></div>
 <div id="login" class="pin card"><div style="font-weight:700;margin-bottom:8px">Введите код доступа</div><input id="pinI" inputmode="numeric" maxlength="6" autocomplete="off"><button class="btn" id="pinB">Войти</button><div class="err" id="pinE"></div></div>
 <div id="app" class="hide"><div class="tabs" id="tabs"></div><div id="view"></div>
 <div class="note" style="margin-top:18px;text-align:center"><a href="https://chalet.q-ala.kz/" style="color:var(--acc)">Калькулятор бонусов</a> · <a href="#" id="logout" style="color:var(--mut)">Выйти</a></div></div>
-</div>
+</div></div></div>
 <script>
 const HIST={"rev": [2733980, 593360, 4164870, 5933405, 5241200, 6471219, 12131424, 15276361, 4047697, 18961505], "cogs": [1935444, 263644, 1837289, 2343673, 2544251, 3334761, 7093311, 8738434, 2187364, 11010596], "bon": [44433, 11131, 0, 0, 0, 0, 2410854, 1349571, 544578, 2310295], "kom": [22591, 30364, 22083, 16354, 0, 288601, 90191, 72998, 86073, 138026], "des": [0, 0, 71985, 412300, 0, 306383, 0, 0, 0, 246118], "tax": [0, 0, 0, 0, 0, 194137, 363943, 458291, 121431, 568845], "Аренда": [1313700, 1313700, 1313700, 1313700, 1313700, 1391239, 1415104, 1413529, 1412161, 1313700], "Зарплата (оклады)": [1257432, 1167849, 985091, 1099517, 1215962, 1453648, 1261863, 1081221, 1090892, 1056346], "Налоги ЗП": [331755, 129688, 108361, 138128, 133757, 374183, 317449, 268171, 270176, 257296], "Налоги ИП": [21675, 21675, 21675, 21675, 21675, 21675, 21675, 21675, 21675, 21675], "СММ": [270000, 270000, 270000, 270000, 270000, 270000, 270000, 270000, 270000, 270000], "Маркетинг": [0, 0, 0, 0, 0, 0, 284500, 747800, 234765, 236305], "Логистика": [44000, 59095, 0, 0, 90000, 135000, 190000, 312670, 35000, 427950], "Услуги 1С": [26200, 26200, 26200, 26200, 13100, 13100, 13100, 13100, 13100, 13100], "Клининг": [40000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000], "Связь": [1150, 1150, 1150, 1150, 1150, 1150, 965, 1150, 1150, 1150], "Ремонт и представительские": [0, 0, 0, 0, 0, 0, 0, 0, 114486, 497817], "Прочие": [0, 0, 239000, 0, 22500, 39000, 68030, 20000, 157000, 80765]};
 const API='/api/fin';
 const ROLE_NAME={manager:'Менеджер',accountant:'Бухгалтер',rop:'РОП',director:'Директор',owner:'Учредитель',admin:'Администратор'};
 const TABS={manager:['sales'],accountant:['expenses','sales','month'],rop:['week','sales'],director:['today','managers','week','sales','expenses','month'],owner:['today','managers','month','model','week'],admin:['today','managers','sales','expenses','week','month','model','settings']};
+const TAB_ICON={today:'📊',managers:'🏆',sales:'🧾',expenses:'💸',week:'✅',month:'📒',model:'🧮',settings:'⚙️'};
 const TAB_NAME={today:'Сегодня',managers:'Менеджеры',sales:'Продажи',expenses:'Расходы',week:'Неделя',month:'ОПУ',model:'Финмодель',settings:'Настройки'};
 const CATS=['Аренда','Зарплата (оклады)','Налоги ЗП','Налоги ИП','СММ','Маркетинг','Логистика','Услуги 1С','Клининг','Связь','Ремонт и представительские','Прочие'];
 const DEF={markup:2.5,kaspi:0.125,card:0.01,designer:0.10,tax:0.03,plan:3000000,
@@ -135,7 +144,7 @@ V.model=()=>{const s=S(),m=s.model;const P=['2026-07','2026-08','2026-09','2026-
 V.settings=()=>{const s=S();return `<div class="card"><b>Параметры</b><div class="row"><div><label>Наценка (маркап)</label><input id="xM" value="${s.markup}"></div><div><label>Kaspi кредит, %</label><input id="xK" value="${s.kaspi*100}"></div></div><div class="row"><div><label>Безнал, %</label><input id="xC" value="${s.card*100}"></div><div><label>Дизайнер, %</label><input id="xDe" value="${s.designer*100}"></div></div><div class="row"><div><label>Налог, %</label><input id="xT" value="${s.tax*100}"></div><div><label>План прибыли, ₸</label><input id="xP" value="${s.plan}"></div></div></div>
  <div class="card"><b>Бюджет постоянных расходов в месяц</b>${s.fixedCats.map(c=>`<label>${c}</label><input data-bud="${c}" inputmode="numeric" value="${s.budget[c]||0}">`).join('')}<div class="kv" style="margin-top:10px"><span>Итого</span><b>${fmt(fixedTotal())}</b></div><button class="btn" id="xSave">Сохранить</button></div>
  <div class="card"><b>Коды доступа</b><div class="note">Менеджеры 2817 · Бухгалтер 4731 · РОП 5926 · Директор 6184 · Учредитель 7350 · Администратор 9042</div></div>`};
-function render(){const tabs=TABS[ROLE]||[];if(!tabs.includes(TAB))TAB=tabs[0];$('tabs').innerHTML=tabs.map(t=>`<button class="${t===TAB?'on':''}" data-t="${t}">${TAB_NAME[t]}</button>`).join('');$('tabs').style.display=tabs.length>1?'':'none';$('who').textContent=ROLE_NAME[ROLE]+' · '+new Date().toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'});$('view').innerHTML=V[TAB]();bind()}
+function render(){const tabs=TABS[ROLE]||[];if(!tabs.includes(TAB))TAB=tabs[0];$('side').innerHTML=tabs.map(t=>`<button class="${t===TAB?'on':''}" data-t="${t}"><span class="i">${TAB_ICON[t]}</span>${TAB_NAME[t]}</button>`).join('');$('side').style.display=tabs.length>1?'':'none';$('who').textContent=ROLE_NAME[ROLE]+' · '+new Date().toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'});$('view').innerHTML=V[TAB]();bind()}
 function bind(){const mi=$('monI');if(mi)mi.onchange=()=>{MON=mi.value;render()};
  const prev=()=>{const p=$('sPrev');if(!p)return;const c=calc({price:$('sP').value.replace(/\s/g,''),disc:$('sDi').value,pay:$('sPay').value,designer:$('sDes').value,bonus:$('sB').value.replace(/\s/g,'')});p.innerHTML=c.cash?`В кассу ${fmt(c.cash)} · прибыль сделки ${fmtS(c.profit)} (${pct(c.profit/c.cash)})`:''};
  ['sP','sDi','sPay','sDes','sB'].forEach(i=>{const e=$(i);if(e)e.oninput=e.onchange=prev});
@@ -150,7 +159,7 @@ function bind(){const mi=$('monI');if(mi)mi.onchange=()=>{MON=mi.value;render()}
  const xs=$('xSave');if(xs)xs.onclick=async()=>{const s=S();const n=id=>+String($(id).value).replace(',','.').replace(/\s/g,'');s.markup=n('xM');s.kaspi=n('xK')/100;s.card=n('xC')/100;s.designer=n('xDe')/100;s.tax=n('xT')/100;s.plan=n('xP');document.querySelectorAll('[data-bud]').forEach(i=>s.budget[i.dataset.bud]=+i.value.replace(/\s/g,'')||0);await save('settings',s)};}
 async function save(type,item){try{await call({a:'save',type,item});render()}catch(e){alert(e.message)}}
 async function del(type,id){try{await call({a:'del',type,item:{id}});render()}catch(e){alert(e.message)}}
-$('tabs').onclick=e=>{const b=e.target.closest('[data-t]');if(b){TAB=b.dataset.t;render()}};
+$('side').onclick=e=>{const b=e.target.closest('[data-t]');if(b){TAB=b.dataset.t;render();window.scrollTo(0,0)}};
 async function login(p){PIN=p;try{await call({a:'load'});localStorage.setItem('fin_pin',p);$('login').classList.add('hide');$('app').classList.remove('hide');render()}catch(e){$('pinE').textContent=e.message;localStorage.removeItem('fin_pin')}}
 $('pinB').onclick=()=>login($('pinI').value.trim());$('pinI').onkeydown=e=>{if(e.key==='Enter')login($('pinI').value.trim())};
 $('logout').onclick=e=>{e.preventDefault();localStorage.removeItem('fin_pin');location.reload()};

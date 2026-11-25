@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
     if(!role) return res.status(403).json({ error:'Неверный код' });
     const a = body.a || 'load';
     let db = await load();
+    if (!db.seed11){ const seed=require('./seed.json'); const has=new Set(db.sales.map(x=>x.id)); seed.sales.forEach(x=>{ if(!has.has(x.id)) db.sales.push(x) }); const he=new Set(db.expenses.map(x=>x.id)); seed.expenses.forEach(x=>{ if(!he.has(x.id)) db.expenses.push(x) }); db.seed11=true; await save(db); }
     if (a==='save' || a==='del'){
       const type = body.type||''; const item = body.item||{};
       if(!CAN[type] || !CAN[type].includes(role)) return res.status(403).json({ error:'Нет прав для этого действия' });
